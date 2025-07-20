@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-import { useAuth } from './useAuth';
 
 interface User {
   id: string;
@@ -21,7 +20,6 @@ interface RoomState {
 }
 
 export function useRoom() {
-  const { user: currentUser } = useAuth();
   const [state, setState] = useState<RoomState>({
     room: null,
     connectedUsers: [],
@@ -37,12 +35,12 @@ export function useRoom() {
     const newRoom: Room = {
       id: Date.now().toString(),
       code: roomCode,
-      hostId: currentUser?.id || 'user1',
+      hostId: 'user1',
       createdAt: new Date(),
     };
 
     const mockUsers: User[] = [
-      { id: currentUser?.id || 'user1', name: currentUser?.name || 'You', isHost: true },
+      { id: 'user1', name: 'You', isHost: true },
     ];
 
     setState({
@@ -53,7 +51,7 @@ export function useRoom() {
 
     // In a real app, this would create a WebSocket connection
     console.log('Created room:', roomCode);
-  }, [currentUser]);
+  }, []);
 
   const joinRoom = useCallback(async (roomCode: string) => {
     // Simulate joining a room
@@ -67,7 +65,7 @@ export function useRoom() {
     const mockUsers: User[] = [
       { id: 'user2', name: 'Sarah', isHost: true },
       { id: 'user3', name: 'Mike', isHost: false },
-      { id: currentUser?.id || 'user1', name: currentUser?.name || 'You', isHost: false },
+      { id: 'user1', name: 'You', isHost: false },
     ];
 
     setState({
@@ -78,7 +76,7 @@ export function useRoom() {
 
     // In a real app, this would join a WebSocket room
     console.log('Joined room:', roomCode);
-  }, [currentUser]);
+  }, []);
 
   const leaveRoom = useCallback(() => {
     setState({

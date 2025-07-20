@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Switch, ScrollView, Alert, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Switch, ScrollView, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { User, Volume2, Wifi, Shield, CircleHelp as HelpCircle, LogOut, Bell, Music } from 'lucide-react-native';
 import SyncTunesLogo from '@/components/SyncTunesLogo';
-import { useAuth } from '@/hooks/useAuth';
 
 export default function SettingsScreen() {
-  const { user, signOut } = useAuth();
   const [notifications, setNotifications] = useState(true);
   const [autoSync, setAutoSync] = useState(true);
   const [highQuality, setHighQuality] = useState(false);
@@ -18,7 +16,7 @@ export default function SettingsScreen() {
       'Are you sure you want to sign out?',
       [
         { text: 'Cancel', style: 'cancel' },
-        { text: 'Sign Out', onPress: signOut, style: 'destructive' },
+        { text: 'Sign Out', onPress: () => console.log('Logged out'), style: 'destructive' },
       ]
     );
   };
@@ -71,20 +69,11 @@ export default function SettingsScreen() {
               style={styles.profileCardGradient}
             >
               <View style={styles.profileAvatar}>
-                {user?.photo ? (
-                  <Image 
-                    source={{ uri: user.photo }} 
-                    style={styles.profileImage}
-                  />
-                ) : (
-                  <Text style={styles.profileInitial}>
-                    {user?.name?.charAt(0)?.toUpperCase() || 'U'}
-                  </Text>
-                )}
+                <Text style={styles.profileInitial}>A</Text>
               </View>
               <View style={styles.profileInfo}>
-                <Text style={styles.profileName}>{user?.name || 'User'}</Text>
-                <Text style={styles.profileEmail}>{user?.email || 'user@example.com'}</Text>
+                <Text style={styles.profileName}>Alex Johnson</Text>
+                <Text style={styles.profileEmail}>alex.johnson@email.com</Text>
               </View>
             </LinearGradient>
           </View>
@@ -267,11 +256,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 24,
     fontWeight: '700',
-  },
-  profileImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
   },
   profileInfo: {
     flex: 1,
