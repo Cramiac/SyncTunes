@@ -28,7 +28,6 @@ export function useAuth() {
   const [request, response, promptAsync] = AuthSession.useAuthRequest(
     {
       clientId: 'your-google-client-id.apps.googleusercontent.com', // Replace with actual client ID
-      redirectUri: AuthSession.makeRedirectUri({ useProxy: false }),
       scopes: ['openid', 'profile', 'email'],
       additionalParameters: {},
       customParameters: {
