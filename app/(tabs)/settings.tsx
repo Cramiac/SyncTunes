@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Switch, ScrollView, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { User, Volume2, Wifi, Shield, CircleHelp as HelpCircle, LogOut, Bell, Music } from 'lucide-react-native';
+import SyncTunesLogo from '@/components/SyncTunesLogo';
 
 export default function SettingsScreen() {
   const [notifications, setNotifications] = useState(true);
@@ -50,9 +51,12 @@ export default function SettingsScreen() {
       colors={['#1F2937', '#111827']}
       style={styles.container}
     >
-      <View style={styles.header}>
-        <Text style={styles.title}>Settings</Text>
-        <Text style={styles.subtitle}>Customize your SyncTunes experience</Text>
+      {/* Logo */}
+      <SyncTunesLogo />
+
+      <View style={styles.settingsHeader}>
+        <Text style={styles.settingsTitle}>Settings</Text>
+        <Text style={styles.settingsSubtitle}>Customize your experience</Text>
       </View>
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
@@ -193,13 +197,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 24,
   },
+  settingsHeader: {
+    paddingHorizontal: 20,
+    marginBottom: 24,
+  },
   title: {
     color: '#FFFFFF',
     fontSize: 32,
     fontWeight: '700',
     marginBottom: 4,
   },
+  settingsTitle: {
+    color: '#FFFFFF',
+    fontSize: 28,
+    fontWeight: '700',
+    marginBottom: 4,
+  },
   subtitle: {
+    color: '#9CA3AF',
+    fontSize: 16,
+  },
+  settingsSubtitle: {
     color: '#9CA3AF',
     fontSize: 16,
   },

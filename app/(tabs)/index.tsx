@@ -5,6 +5,7 @@ import { Play, Pause, SkipForward, SkipBack, Volume2, Heart, Search, Plus } from
 import { useMusicPlayer } from '@/hooks/useMusicPlayer';
 import { useRoom } from '@/hooks/useRoom';
 import YouTubeSearch from '@/components/YouTubeSearch';
+import SyncTunesLogo from '@/components/SyncTunesLogo';
 import type { Song } from '@/types/youtube';
 
 const mockSongs: Song[] = [
@@ -105,6 +106,9 @@ export default function PlayerScreen() {
       colors={['#1F2937', '#111827']}
       style={styles.container}
     >
+      {/* Logo */}
+      <SyncTunesLogo />
+
       {/* Room Status */}
       {room && (
         <View style={styles.roomStatus}>

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Keyboa
 import { LinearGradient } from 'expo-linear-gradient';
 import { Send, Music, Users } from 'lucide-react-native';
 import { useRoom } from '@/hooks/useRoom';
+import SyncTunesLogo from '@/components/SyncTunesLogo';
 
 interface ChatMessage {
   id: string;
@@ -122,6 +123,7 @@ export default function ChatScreen() {
         colors={['#1F2937', '#111827']}
         style={styles.container}
       >
+        <SyncTunesLogo />
         <View style={styles.emptyState}>
           <Users size={64} color="#4B5563" />
           <Text style={styles.emptyTitle}>No Active Room</Text>

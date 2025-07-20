@@ -5,6 +5,7 @@ import { Plus, Users, Copy, Music, Search } from 'lucide-react-native';
 import { useRoom } from '@/hooks/useRoom';
 import { useMusicPlayer } from '@/hooks/useMusicPlayer';
 import YouTubeSearch from '@/components/YouTubeSearch';
+import SyncTunesLogo from '@/components/SyncTunesLogo';
 import type { Song } from '@/types/youtube';
 
 export default function RoomsScreen() {
@@ -67,10 +68,15 @@ export default function RoomsScreen() {
       colors={['#1F2937', '#111827']}
       style={styles.container}
     >
-      <View style={styles.header}>
-        <Text style={styles.title}>Music Rooms</Text>
-        <Text style={styles.subtitle}>Listen together with friends</Text>
-      </View>
+      {/* Logo */}
+      <SyncTunesLogo />
+
+      {!room && (
+        <View style={styles.header}>
+          <Text style={styles.title}>Music Rooms</Text>
+          <Text style={styles.subtitle}>Listen together with friends</Text>
+        </View>
+      )}
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {room ? (
